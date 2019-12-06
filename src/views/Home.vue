@@ -1,18 +1,55 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <LeftMenu />
+    <Content />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import LeftMenu from '@/components/LeftMenu.vue';
+import Content from '@/components/Content.vue';
 
 export default {
   name: 'home',
   components: {
-    HelloWorld
+    LeftMenu,
+    Content
   }
 }
 </script>
+
+<style lang="scss" scoped>
+@import './src/scss/index.scss';
+
+.home {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  height: 100%;
+
+  .page {
+    display: flex;
+    flex-grow: 1;
+    height: calc(100% - 75px);
+
+    .left-menu {
+      background: $background-secondary;
+      min-width: 250px;
+      max-width: 250px;
+    }
+
+    .content {
+      flex-grow: 1;
+      overflow: scroll;
+
+      & > div {
+        display: flex;
+        justify-content: flex-start;
+        padding: 32px;
+      }
+    }
+  }
+}
+</style>
