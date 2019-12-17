@@ -1,5 +1,7 @@
 <template>
-  <div class="card">
+  <div class="card" :class="{full: (width === 'full'), half:(width === 'half')}">
+    <span class="title">{{ title }}</span>
+    <span class="content">{{ content }}</span>
   </div>
 </template>
 
@@ -7,6 +9,11 @@
 
 export default {
   name: 'card',
+  props: {
+    width: String,
+    title: String,
+    content: String,
+  }
 }
 </script>
 
@@ -14,54 +21,29 @@ export default {
 @import './src/scss/index.scss';
 
 .card {
-  margin-bottom: 20px;
   padding: 20px;
   display: flex;
-  flex-direction: flex;
+  flex-direction: column;
   background: $background-secondary;
-  position: relative;
-  border-radius: 10px;
-  //border: solid;
-  box-shadow: 0 2px 5px 5px rgba(0, 0, 0, 0.3);
+  border: solid rgb(48, 49, 68) 1px;
+  align-items: center;
+  height: fit-content;
+  flex-shrink: 1;
+  flex-basis: auto;
+  margin-bottom: 20px;
 
-  .card-info {
-    padding-right: px;
-    display: flex;
-    flex-direction: column;
-
-    .title {
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-
-    .description {
-      font-size: 14px;
-      height: 75px;
-      margin-top: 6px;
-      overflow: hidden;
-      position: relative;
-
-      &::before {
-        position: absolute;
-        content: '';
-        background: linear-gradient(transparent 20px, white);
-        width: 100%;
-        height: 100%;
-      }
-    }
-
-    button {
-      margin-top: 5px;
-      background: $secondary;
-      color: $background-secondary;
-      padding: 6px 16px;
-      border-radius: 6px;
-      box-shadow: 0 10px 27px -11px rgba(0, 0, 0, 0.3);
-
-      &:disabled {
-        cursor: not-allowed;
-      }
-    }
+  &.full {
+    width: calc( 100% - 2 * 20px);
   }
+
+  &.half {
+    width: calc( 49% - 2 * 20px);
+  }
+
+  .title {
+    font-weight: bold;
+    margin: 0 0 20px 0;
+  }
+
 }
 </style>

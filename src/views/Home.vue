@@ -28,6 +28,7 @@ export default {
   flex-wrap: nowrap;
   align-items: flex-start;
   height: 100%;
+  color: $primary;
 
   .page {
     display: flex;
